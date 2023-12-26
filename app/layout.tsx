@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import SidebarFollowers from "@/components/SidebarFollowers";
+import LoginModal from "@/components/modals/LoginModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <LoginModal/>
         <div className="h-screen">
           <div className="container mx-auto h-full xl:px-30 max-w-6xl">
             <div className="grid grid-cols-4 h-full">
