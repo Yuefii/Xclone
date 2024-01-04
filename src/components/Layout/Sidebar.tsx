@@ -21,7 +21,7 @@ const Sidebar = () => {
       auth: true,
     },
     {
-      label: "Home",
+      label: "Profile",
       href: "/",
       icon: IoIosPerson,
       auth: true,
