@@ -2,7 +2,7 @@ import useUsers from '@/hooks/useUsers';
 
 import Avatar from '../Avatar';
 
-const FollowBar = () => {
+const SidebarFollow = () => {
   const { data: users = [] } = useUsers();
 
   if (users.length === 0) {
@@ -29,4 +29,4 @@ const FollowBar = () => {
   );
 };
 
-export default FollowBar;
+export default SidebarFollow;
