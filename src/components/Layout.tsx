@@ -1,24 +1,29 @@
-import Sidebar from "./Layout/Sidebar";
-import SidebarFollowers from "./Layout/SidebarFollowers";
+import React from 'react';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+import FollowBar from "@/components/layout/SidebarFollow"
+import Sidebar from "@/components/layout/Sidebar"
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="h-screen bg-black">
       <div className="container h-full mx-auto xl:px-30 max-w-8xl">
         <div className="grid grid-cols-4 h-full">
           <Sidebar />
-          <div className="col-span-3 lg:col-span-2 border-x-[1px] border-sky-600 rounded-xl">
+          <div 
+            className="
+              col-span-3 
+              lg:col-span-2 
+              border-x-2
+              border-sky-600
+              rounded-xl
+          ">
             {children}
           </div>
-          <SidebarFollowers />
+          <FollowBar />
         </div>
-      </div>
+     </div>
     </div>
-  );
-};
+  )
+}
 
 export default Layout;

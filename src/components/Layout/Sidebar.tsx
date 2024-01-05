@@ -1,29 +1,32 @@
-import useCurrentUser from "@/hooks/useCurrentUser";
 import { signOut } from "next-auth/react";
-import { IoMdHome,IoIosNotifications, IoIosPerson } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
-import SidebarLogo from "./SidebarLogo";
+import { BsHouseFill, BsBellFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 import SidebarItem from "./SidebarItem";
+import SidebarLogo from "./SidebarLogo";
 import PostButton from "./PostButton";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 const Sidebar = () => {
   const { data: currentUser } = useCurrentUser();
+
   const items = [
     {
+      icon: BsHouseFill,
       label: "Home",
       href: "/",
-      icon: IoMdHome,
     },
     {
+      icon: BsBellFill,
       label: "Notifications",
       href: "/notifications",
-      icon: IoIosNotifications,
       auth: true,
+      alert: currentUser?.hasNotification,
     },
     {
+      icon: FaUser,
       label: "Profile",
-      href: "/",
-      icon: IoIosPerson,
+      href: `/users/${currentUser?.id}`,
       auth: true,
     },
   ];
@@ -33,20 +36,21 @@ const Sidebar = () => {
       <div className="flex flex-col items-end">
         <div className="space-y-2 lg:w-[230px]">
           <SidebarLogo />
-          {items.map((i, index) => (
+          {items.map((item) => (
             <SidebarItem
-              key={index}
-              href={i.href}
-              label={i.label}
-              icon={i.icon}
-              auth={i.auth}
+              key={item.href}
+              alert={item.alert}
+              auth={item.auth}
+              href={item.href}
+              icon={item.icon}
+              label={item.label}
             />
           ))}
           {currentUser && (
             <SidebarItem
               onClick={() => signOut()}
               icon={BiLogOut}
-              label="Log Out"
+              label="Logout"
             />
           )}
           <PostButton />
